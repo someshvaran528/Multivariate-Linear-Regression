@@ -21,6 +21,30 @@ To write a python program to implement multivariate linear regression and predic
 <br>
 
 ## Program:
+X = np.array([
+    [2104, 5],
+    [1416, 3],
+    [1534, 3],
+    [852, 2]
+])
+
+# y = [price]
+y = np.array([460, 232, 315, 178])
+
+# Step 1: Add a column of ones for the intercept term
+X_b = np.c_[np.ones((X.shape[0], 1)), X]   # shape: (m, n+1)
+
+# Step 2: Calculate parameters using the Normal Equation
+# θ = (Xᵀ * X)⁻¹ * Xᵀ * y
+theta = np.linalg.inv(X_b.T.dot(X_b)).dot(X_b.T).dot(y)
+
+# Step 3: Display coefficients
+print("Intercept (θ₀):", theta[0])
+print("Coefficients (θ₁, θ₂, ...):", theta[1:])
+
+# Step 4: Predict values
+y_pred = X_b.dot(theta)
+print("Predicted values:"
 ```
 
 
@@ -30,6 +54,8 @@ To write a python program to implement multivariate linear regression and predic
 
 ```
 ## Output:
+
+Intercept (θ₀): 79.150159 Coefficients (θ₁, θ₂, ...): [0.1345 -8.7921] Predicted values: [464.163, 232.749, 315.399, 177.686]
 
 ### Insert your output
 
